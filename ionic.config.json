@@ -1,0 +1,8 @@
+{
+  "name": "Coffee",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "e13637dd"
+}

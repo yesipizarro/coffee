@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="Crear Café"></ion-back-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <section class="create-coffee" [formGroup]="coffeeForm">
+    <ion-item>
+      <ion-label position="stacked">Nombre del café</ion-label>
+      <ion-input placeholder="Colombia..." formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Intensidad</ion-label>
+      <ion-range [min]="0" [max]="15" [pin]="true" [ticks]="true" [snaps]="true" formControlName="intensity"></ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-select placeholder="Modos de preparación" [multiple]="true" formControlName="preparations">
+        <ion-select-option [value]="preparation" *ngFor="let preparation of preparations">{{preparation | preparationAndMilk}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select placeholder="Leche" [multiple]="true" formControlName="leche">
+        <ion-select-option [value]="milk" *ngFor="let milk of milkTypes">{{milk | preparationAndMilk}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-img *ngIf="photo" [src]="'data:image/jpg;base64,'+photo"></ion-img>
+    <ion-button shape="round" (click)="openCamera()"><ion-icon slot="icon-only" name="camera"></ion-icon></ion-button>
+    <ion-button shape="round" (click)="save()" [disabled]="!coffeeForm.valid || !photo">Guardar</ion-button>
+  </section>
+</ion-content>
